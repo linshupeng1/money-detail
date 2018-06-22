@@ -43,7 +43,7 @@ function firstRender(params) {
             console.log(detailData);
             //没有数据
             if (detailData.length === 0) {
-                $('.loading-hook').text('暂无数据');
+                $('.loading-hook').text('查看更多');
                 $('.detail-content').html("");
             } else {
                 $('.loading-hook').text('查看更多');
@@ -80,7 +80,8 @@ function firstRender(params) {
                         + '</section>';
                 }
                 $('.detail-content').html(detailHtml);
-                isbool=true;
+                isbool1=true;
+                isbool2=true;
                 // 首次Dom加载完毕，执行加载更多
                 initScroll(params);
             }
@@ -135,7 +136,7 @@ function moreRender(params) {
                         console.log('0');
                         //相同，内容插入
                         $('.detail-content .detail-panel:last .detail-list').append(detailHtml);
-                        isbool=true;
+                        isbool2=true;
                     } else {
                         //console.log('diff');
                         // 不相同，重新赋值比较时间
@@ -168,7 +169,7 @@ function moreRender(params) {
                         console.log('1');
                         // 接到后面
                         $('.detail-content .detail-panel:last').after(detailHtml);
-                        isbool=true;
+                        isbool2=true;
                     }
                 }
             }
@@ -210,6 +211,8 @@ function typeFilter(params, styleArr) {
 function filterBoxShow(){
     $('.trade-style').show();
     $('.cover').show();
+    //关闭日期筛选框
+    $('.lcalendar_cancel').trigger('click');
 }
 
 //日期筛选
@@ -235,8 +238,9 @@ var listWrapper = document.querySelector('.m-money-detail'),
     alert = document.querySelector('.alert-hook'),
     topTip = document.querySelector('.refresh-hook'),
     bottomTip = document.querySelector('.loading-hook');
-// 上拉加载只调用一次接口
-var isbool=true;
+// 下拉刷新和上拉加载只调用一次接口
+var isbool1=true;
+var isbool2=true;
 function initScroll(params) {
     var listH = $('.detail-content').height();
     var winH = $(window).height();
@@ -244,7 +248,8 @@ function initScroll(params) {
         // 设置外容器高度
         $('.m-money-detail').height(winH);
     }else {
-        $('.m-money-detail').height(listH+30);
+        $('.scroll-content').height(winH);
+        $('.m-money-detail').height(winH-1);
     }
     var scroll = new window.BScroll(listWrapper, {
         probeType: 1,
@@ -264,8 +269,8 @@ function initScroll(params) {
 
     // 滑动结束
     scroll.on('scroll', function (position) {
-        if (position.y > 30&&isbool==true) {
-            isbool=false;
+        if (position.y > 30&&isbool1==true) {
+            isbool1=false;
             setTimeout(function () {
                 /*
                  * 这里发送ajax刷新数据
@@ -277,8 +282,8 @@ function initScroll(params) {
                 // 刷新列表后,重新计算滚动区域高度
                 scroll.refresh();
             }, 1000);
-        }else if(position.y < (this.maxScrollY - 30) && isbool==true) {
-            isbool=false;
+        }else if(position.y < (this.maxScrollY - 30) && isbool2==true) {
+            isbool2=false;
             bottomTip.innerText = '加载中...';
             setTimeout(function () {
                 // 恢复文本值
