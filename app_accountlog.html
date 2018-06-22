@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title>资金明细</title>
+    <script src="/static/app_accountlog/js/rem.js"></script>
+    <link rel="stylesheet" href="/static/app_accountlog/css/style.css">
+    <script>
+        window.SESSID = '<?php echo $sessid?>';
+    </script>
+</head>
+<body>
+<div class="m-money-detail">
+    <div class="scroll-content">
+        <!-- 顶部提示信息 -->
+        <div class="top-tip">
+            <span class="refresh-hook">下拉刷新</span>
+        </div>
+        <!-- 列表 -->
+        <div class="detail-content"></div>
+        <!--底部提示信息 -->
+        <div class="bottom-tip">
+            <span class="loading-hook">查看更多</span>
+        </div>
+    </div>
+</div>
+<div class="cover" style="display: none;"></div>
+<section class="trade-style" style="display: none;">
+    <div class="trade-style-title">选择交易类型</div>
+    <ul class="trade-style-list">
+        <li class="active">全部</li>
+        <li>投资</li>
+        <li>充值</li>
+        <li>提现</li>
+        <li>借款</li>
+        <li>返现</li>
+        <li>其他</li>
+    </ul>
+    <div class="btn-cancel">取消</div>
+</section>
+<div class="date-icon" id="dateSelect"></div>
+
+<script src="/static/app_accountlog/js/jquery.js"></script>
+<script src="/static/app_accountlog/js/datePicker/datePicker.js"></script>
+<script src="/static/app_accountlog/js/bscroll.min.js"></script>
+<script src="/static/app_accountlog/js/index.js"></script>
+</body>
+</html>

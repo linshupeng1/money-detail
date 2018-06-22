@@ -1,0 +1,216 @@
+@import "reset.scss";
+
+$border: 1px solid #ececec;
+$px: 0.01rem;
+
+@mixin flex($column:column) {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: $column;
+  -webkit-flex-direction: $column;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  -o-flex-wrap: wrap;
+  flex-wrap:wrap;
+}
+
+.m-money-detail {
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  z-index: 1;
+  font-size: 26*$px;
+  color: #333;
+  line-height: 1;
+  overflow: hidden;
+  .detail-panel + .detail-panel {
+    .detail-header {
+      border-top: 1px solid #ececec;
+    }
+  }
+  .header-date {
+    font-size: 30*$px;
+  }
+  .detail-header {
+    padding: 22*$px 30*$px;
+    background-color: #fff;
+    border-bottom: 1px solid #ececec;
+  }
+  .header-info {
+    font-size: 24*$px;
+    color: #999;
+    margin-top: 20*$px;
+  }
+  .money-in {
+    margin-left: 20*$px;
+  }
+  .detail-list {
+    background-color: #f3f3f3;
+    @include flex;
+  }
+  .detail-line {
+    height: 140*$px;
+    padding-left: 30*$px;
+    @include flex(row);
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    &:nth-child(n+2):before {
+      content: "";
+      display: inline-block;
+      width: 100%;
+      border-bottom: 1px solid #ececec;
+    }
+  }
+  .line-left {
+    width: 75%;
+  }
+  .line-right {
+    width: 25%;
+    line-height: 140*$px;
+    font-size: 30*$px;
+    text-align: right;
+    padding-right: 30*$px;
+    box-sizing: border-box;
+  }
+  .line-time {
+    margin: 22*$px 0 14*$px 0;
+    font-size: 30*$px;
+  }
+  .line-typename {
+    margin-left: 20*$px;
+  }
+  .line-info {
+    color: #999;
+    line-height: 32*$px;
+  }
+}
+.date-icon {
+  position: absolute;
+  right: 30*$px;
+  top: 36*$px;
+  width: 40*$px;
+  height: 40*$px;
+  background: url("../images/icon-date.png") no-repeat;
+  -webkit-background-size: cover;
+  background-size: cover;
+  z-index: 100;
+}
+.trade-style {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background-color: #e3e3e3;
+  .trade-style-title {
+    line-height: 80*$px;
+    font-size: 30*$px;
+    text-align: center;
+    border-bottom: 1px solid #ececec;
+    background-color: #f3f3f3;
+  }
+  .trade-style-list {
+    background-color: #f3f3f3;
+    @include flex(row);
+    padding: 32*$px 0 36*$px 0;
+    li {
+      width: 160*$px;
+      line-height: 68*$px;
+      text-align: center;
+      background-color: #fff;
+      border-radius: 5px;
+      margin-right: 20*$px;
+      margin-bottom: 20*$px;
+      &.active {
+        background-color: #2692fe;
+        color: #fff;
+      }
+      &:nth-child(5n) {
+        margin-left: 20*$px;
+      }
+      &:nth-child(1) {
+        margin-left: 20*$px;
+      }
+      &:nth-child(n+5) {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .btn-cancel {
+    line-height: 100*$px;
+    font-size: 26*$px;
+    text-align: center;
+    background-color: #fff;
+    margin-top: 22*$px;
+    font-size: 30*$px;
+  }
+}
+.no-data {
+  text-align: center;
+  font-size: 12px;
+  padding: 20px 0;
+  color: #000;
+}
+.cover {
+  background: rgba(0,0,0,.2);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+/* 下拉、上拉提示信息 */
+.top-tip{
+  position: absolute;
+  top: -40px;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height:40px;
+  line-height:40px;
+  text-align:center;
+  color: #555;
+}
+
+.bottom-tip{
+  width: 100%;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  color: #777;
+  background: #f2f2f2;
+}
+
+.date_ctrl {
+  background-color: #fff!important;
+  .date_btn_box {
+    background-color: #fff;
+  }
+  .date_btn {
+    font-weight: normal;
+    line-height: 1em;
+    padding: 1em 1.2em;
+  }
+  .lcalendar_cancel {
+    color: #999;
+  }
+  .lcalendar_finish {
+    color: #2692fe;
+  }
+  .ym_roll>div {
+    font-size: 1.8em;
+    height: 8em;
+    font-weight: normal;
+  }
+  .date_grid {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #dedede;
+  }
+  .date_grid>div {
+    display: none;
+  }
+  .ym_roll>div .gear {
+    text-indent: -40%;
+  }
+}
