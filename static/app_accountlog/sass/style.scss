@@ -88,12 +88,13 @@ $px: 0.01rem;
   position: absolute;
   right: 30*$px;
   top: 36*$px;
-  width: 40*$px;
-  height: 40*$px;
-  background: url("../images/icon-date.png") no-repeat;
-  -webkit-background-size: cover;
-  background-size: cover;
+  width: 80*$px;
+  height: 80*$px;
+  background: url("../images/icon-date.png") no-repeat right top;
+  -webkit-background-size: 40*$px 40*$px;
+  background-size: 40*$px 40*$px;
   z-index: 100;
+  cursor: pointer;
 }
 .trade-style {
   position: fixed;
@@ -112,27 +113,18 @@ $px: 0.01rem;
   .trade-style-list {
     background-color: #f3f3f3;
     @include flex(row);
-    padding: 32*$px 0 36*$px 0;
+    padding: 12*$px 0 36*$px 0;
     li {
-      width: 160*$px;
+      width: 21.4%;
       line-height: 68*$px;
       text-align: center;
       background-color: #fff;
       border-radius: 5px;
-      margin-right: 20*$px;
-      margin-bottom: 20*$px;
+      margin-left: 2.8%;
+      margin-top: 20*$px;
       &.active {
         background-color: #2692fe;
         color: #fff;
-      }
-      &:nth-child(5n) {
-        margin-left: 20*$px;
-      }
-      &:nth-child(1) {
-        margin-left: 20*$px;
-      }
-      &:nth-child(n+5) {
-        margin-bottom: 0;
       }
     }
   }
@@ -181,8 +173,12 @@ $px: 0.01rem;
   color: #777;
   background: #f2f2f2;
 }
-
+body {
+  height:100%;
+  overflow:hidden;
+}
 .date_ctrl {
+  position: fixed!important;
   background-color: #fff!important;
   .date_btn_box {
     background-color: #fff;

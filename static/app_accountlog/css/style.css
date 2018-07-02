@@ -213,12 +213,13 @@ body {
   position: absolute;
   right: 0.3rem;
   top: 0.36rem;
-  width: 0.4rem;
-  height: 0.4rem;
-  background: url("../images/icon-date.png") no-repeat;
-  -webkit-background-size: cover;
-  background-size: cover;
+  width: 0.8rem;
+  height: 0.8rem;
+  background: url("../images/icon-date.png") no-repeat right top;
+  -webkit-background-size: 0.4rem 0.4rem;
+  background-size: 0.4rem 0.4rem;
   z-index: 100;
+  cursor: pointer;
 }
 
 .trade-style {
@@ -247,29 +248,20 @@ body {
   -ms-flex-wrap: wrap;
   -o-flex-wrap: wrap;
   flex-wrap: wrap;
-  padding: 0.32rem 0 0.36rem 0;
+  padding: 0.12rem 0 0.36rem 0;
 }
 .trade-style .trade-style-list li {
-  width: 1.6rem;
+  width: 21.4%;
   line-height: 0.68rem;
   text-align: center;
   background-color: #fff;
   border-radius: 5px;
-  margin-right: 0.2rem;
-  margin-bottom: 0.2rem;
+  margin-left: 2.8%;
+  margin-top: 0.2rem;
 }
 .trade-style .trade-style-list li.active {
   background-color: #2692fe;
   color: #fff;
-}
-.trade-style .trade-style-list li:nth-child(5n) {
-  margin-left: 0.2rem;
-}
-.trade-style .trade-style-list li:nth-child(1) {
-  margin-left: 0.2rem;
-}
-.trade-style .trade-style-list li:nth-child(n+5) {
-  margin-bottom: 0;
 }
 .trade-style .btn-cancel {
   line-height: 1rem;
@@ -319,7 +311,13 @@ body {
   background: #f2f2f2;
 }
 
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
 .date_ctrl {
+  position: fixed !important;
   background-color: #fff !important;
 }
 .date_ctrl .date_btn_box {

@@ -31,7 +31,7 @@ window.datePicker = (function() {
 	cssEle.type = "text/css";
 	cssEle.appendChild(document.createTextNode(cssHtm));
 	document.getElementsByTagName("head")[0].appendChild(cssEle);
-	
+
     MobileCalendar.prototype = {
         init: function(params) {
             this.type = params.type;
@@ -182,7 +182,7 @@ window.datePicker = (function() {
                     '</div>' +
                     '</div>' +
                     '</div><div class="date_bg" style="width:100%;height:100%;"></div>';
-                document.body.appendChild(_self.gearDate);
+                    document.body.appendChild(_self.gearDate);
                 ymCtrlInit();
                 var lcalendar_cancel = _self.gearDate.querySelector(".lcalendar_cancel");
                 lcalendar_cancel.addEventListener('touchstart', closeMobileCalendar);
@@ -841,7 +841,11 @@ window.datePicker = (function() {
                 if(_self.onSubmit) _self.onSubmit();
                 closeMobileCalendar(e);
             }
-            _self.trigger.addEventListener('click', {
+            //移动端弹出层滚动时禁止body滚动
+            document.body.addEventListener("touchmove",function(e){
+                e.preventDefault();
+            });
+            _self.trigger.addEventListener('touchstart', {
                 "ym": popupYM,
                 "date": popupDate,
                 "datetime": popupDateTime,

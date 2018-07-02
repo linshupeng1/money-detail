@@ -25,6 +25,16 @@ $(function () {
     typeFilter(params, styleArr);
     dateSelect(params);
 });
+// 判断DOM节点是否存在页面中
+// (function($) {
+//     $.fn.exist = function(){
+//         if($(this).length>=1){
+//             return true;
+//         }
+//         return false;
+//     };
+// })(jQuery);
+
 
 //首次数据渲染
 function firstRender(params) {
@@ -43,7 +53,7 @@ function firstRender(params) {
             console.log(detailData);
             //没有数据
             if (detailData.length === 0) {
-                $('.loading-hook').text('查看更多');
+                $('.loading-hook').text('没有数据');
                 $('.detail-content').html("");
             } else {
                 $('.loading-hook').text('查看更多');
@@ -108,7 +118,7 @@ function moreRender(params) {
             detailData = objToArray(data.data);
             console.log(detailData);
             if (detailData.length === 0) {
-                $('.loading-hook').text('暂无数据');
+                $('.loading-hook').text('没有更多数据');
             } else {
                 listLen = detailData.length;
                 //每次分页完成，获取最新下一页id
@@ -204,6 +214,10 @@ function typeFilter(params, styleArr) {
     }).on('click', '.btn-cancel', function () {
         $('.trade-style').hide();
         $('.cover').hide();
+        //恢复body滚动
+        document.body.removeEventListener("touchmove",function(e){
+            e.preventDefault();
+        });
     })
 }
 
@@ -213,6 +227,10 @@ function filterBoxShow(){
     $('.cover').show();
     //关闭日期筛选框
     $('.lcalendar_cancel').trigger('click');
+    //移动端弹出层滚动时禁止body滚动
+    document.body.addEventListener("touchmove",function(e){
+        e.preventDefault();
+    });
 }
 
 //日期筛选
@@ -221,17 +239,26 @@ function dateSelect(params) {
     calendar.init({
         'trigger': '#dateSelect', /*按钮选择器，用于触发弹出插件*/
         'type': 'ym', /*模式：date日期；datetime日期时间；time时间；ym年月；*/
-        'minDate': '1980-1-1', /*最小日期*/
-        'maxDate': '2050-12-31', /*最大日期*/
+        'minDate': '1998-1-1', /*最小日期*/
+        'maxDate': '2018-12-31', /*最大日期*/
         'onSubmit': function () {/*确认时触发事件*/
             var theSelectData = calendar.value;
             params.month = theSelectData;
             firstRender(params);
+            //恢复body滚动
+            document.body.removeEventListener("touchmove",function(e){
+                e.preventDefault();
+            });
         },
         'onClose': function () {/*取消时触发事件*/
+            //恢复body滚动
+            document.body.removeEventListener("touchmove",function(e){
+                e.preventDefault();
+            });
         }
     });
 }
+
 
 // 上拉加载、下拉刷新
 var listWrapper = document.querySelector('.m-money-detail'),
@@ -254,6 +281,7 @@ function initScroll(params) {
     var scroll = new window.BScroll(listWrapper, {
         probeType: 1,
         bounceTime: 200,
+        click: true,
     });
     // 滑动中
     scroll.on('scroll', function (position) {
